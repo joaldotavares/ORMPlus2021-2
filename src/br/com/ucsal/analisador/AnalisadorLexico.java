@@ -31,18 +31,14 @@ public class AnalisadorLexico {
     }
 
     public boolean verificarListaParam(char atomo) {
-        return atomo == ',';
-    }
-
-    public boolean verificarListaParamTipado(char atomo) {
-        return atomo == ';';
-    }
-
-    public boolean verificarPassParametros(char atomo) {
-        return atomo == '?';
+        return atomo == ',' || atomo == ';'|| atomo == '?';
     }
 
     public boolean verificarVeriavel(char atomo) {
         return atomo == '_';
+    }
+
+    public boolean eof(String line, int aux) {
+        return line.length() == aux;
     }
 }
