@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     private static AnalisadorLexico al = new AnalisadorLexico();
-    private static final String PATH = "C:\\Users\\Joaldo\\IdeaProjects\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\";
+    private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\";
 
     private static char[] content;
 
