@@ -31,7 +31,7 @@ public class AnalisadorLexico {
     }
 
     public boolean verificarListaParam(char atomo) {
-        return atomo == ',' || atomo == ';'|| atomo == '?';
+        return atomo == ',' || atomo == ';'|| atomo == '?' || atomo == '.';
     }
 
     public boolean verificarVeriavel(char atomo) {
@@ -41,4 +41,6 @@ public class AnalisadorLexico {
     public boolean eof(String line, int aux) {
         return line.length() == aux;
     }
+
+    public boolean verificarComentario(StringBuffer token){ return true;}
 }
