@@ -1,6 +1,13 @@
 package br.com.ucsal.analisador;
 
+import br.com.ucsal.tabela.TabelaSimbolos;
+
+import java.util.Map;
+
 public class AnalisadorLexico {
+
+    private static TabelaSimbolos tabela = new TabelaSimbolos();
+    private static Map<String, String> tabelaSimbolos = tabela.obterTabela();
 
     public boolean verificarDigito(char atomo) {
         return atomo >= '0' && atomo <= '9';
@@ -42,5 +49,30 @@ public class AnalisadorLexico {
         return line.length() == aux;
     }
 
-    public boolean verificarComentario(StringBuffer token){ return true;}
+    public boolean verificarComentarioInicio(String line) {
+        if (line.startsWith("//")) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean verificarPalavrasReservadasSeguidoDeFuncao(char atomo, StringBuffer token) {
+        return tabelaSimbolos.containsValue(token) || verificarBloco(atomo);
+    }
+
+    public boolean verificarCaracterValidoSeguidoPorOperacao(char atomo, char proxAtomo) {
+        return verificarDigito(atomo) || verificarCaracter(atomo) && verificarOperador(proxAtomo);
+    }
+
+    public boolean verificarCaracterValidoAposOperador(char atomo, char proxAtomo) {
+        return verificarOperador(atomo) && verificarCaracter(proxAtomo) || verificarDigito(proxAtomo);
+    }
+
+    public boolean verificarMetodoValido(char atomo, char atomosPos){
+        if(verificarDigito(atomo) || verificarCaracter(atomo) && verificarBloco(atomosPos)){
+            return true;
+        }
+        return false;
+    }
+
 }
