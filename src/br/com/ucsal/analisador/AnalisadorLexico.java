@@ -41,7 +41,7 @@ public class AnalisadorLexico {
         return atomo == ',' || atomo == ';'|| atomo == '?' || atomo == '.';
     }
 
-    public boolean verificarVeriavel(char atomo) {
+    public boolean verificarVariavel(char atomo) {
         return atomo == '_';
     }
 
@@ -49,11 +49,16 @@ public class AnalisadorLexico {
         return line.length() == aux;
     }
 
-    public boolean verificarComentarioInicio(String line) {
-        if (line.startsWith("//")) {
-            return false;
-        }
-        return true;
+    public boolean verificarComentarioInicioLinha(char atomo, char proxAtomo) {
+        return (atomo == '/' && proxAtomo == '/');
+    }
+
+    public boolean verificarComentarioInicioBloco(char atomo, char proxAtomo) {
+        return (atomo == '/' && proxAtomo == '*');
+    }
+
+    public boolean verificarComentarioFimBloco(char atomo, char proxAtomo) {
+        return (atomo == '*' && proxAtomo == '/');
     }
 
     public boolean verificarPalavrasReservadasSeguidoDeFuncao(char atomo, StringBuffer token) {
