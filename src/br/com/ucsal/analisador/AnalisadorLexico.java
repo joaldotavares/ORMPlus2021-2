@@ -1,13 +1,14 @@
 package br.com.ucsal.analisador;
 
 import br.com.ucsal.tabela.TabelaSimbolos;
+import br.com.ucsal.tabela.TabelaSimbolosModel;
 
 import java.util.Map;
 
 public class AnalisadorLexico {
 
-    private static TabelaSimbolos tabela = new TabelaSimbolos();
-    private static Map<String, String> tabelaSimbolos = tabela.obterTabela();
+    private static TabelaSimbolos tabelaSimbolos = new TabelaSimbolos();
+    private static Map<String, String> tabelaReservada = tabelaSimbolos.obterTabelaReservada();
 
     public boolean verificarDigito(char atomo) {
         return atomo >= '0' && atomo <= '9';
@@ -38,7 +39,7 @@ public class AnalisadorLexico {
     }
 
     public boolean verificarListaParam(char atomo) {
-        return atomo == ',' || atomo == ';'|| atomo == '?' || atomo == '.';
+        return atomo == ',' || atomo == ';' || atomo == '?' || atomo == '.';
     }
 
     public boolean verificarVariavel(char atomo) {
@@ -62,7 +63,7 @@ public class AnalisadorLexico {
     }
 
     public boolean verificarPalavrasReservadasSeguidoDeFuncao(char atomo, StringBuffer token) {
-        return tabelaSimbolos.containsValue(token) || verificarBloco(atomo);
+        return tabelaReservada.containsValue(token) || verificarBloco(atomo);
     }
 
     public boolean verificarCaracterValidoSeguidoPorOperacao(char atomo, char proxAtomo) {
@@ -73,11 +74,53 @@ public class AnalisadorLexico {
         return verificarOperador(atomo) && verificarCaracter(proxAtomo) || verificarDigito(proxAtomo);
     }
 
-    public boolean verificarMetodoValido(char atomo, char atomosPos){
-        if(verificarDigito(atomo) || verificarCaracter(atomo) && verificarBloco(atomosPos)){
+    public boolean verificarMetodoValido(char atomo, char atomosPos) {
+        if (verificarDigito(atomo) || verificarCaracter(atomo) && verificarBloco(atomosPos)) {
             return true;
         }
         return false;
+    }
+
+    // TODO Verificar se atende as regras
+    public String obterCodigoAtomo(String token) {
+        for (Map.Entry<String, String> entry : tabelaReservada.entrySet()) {
+            if (entry.getValue().equals(token)) {
+                return entry.getKey();
+            }
+        }
+        return "PO2"; // declaraçoes
+    }
+
+    // TODO Verificar as regras para tipo
+    public String obterTipoAtomo(String token, String codAtomo) {
+       /* if (codAtomo.equals("PO2")) {
+            TabelaSimbolosModel ultimoElemento = tabelaSimbolos.obterUltimoElementoAdicionado();
+            return tabelaReservada.get(ultimoElemento.codAtomo);
+        }*/
+        return "";
+    }
+
+    public String trucarToken(String token) {
+        return token.substring(0, 30);
+    }
+
+    public void salvarToken(String token, int numLinha, int posicao) {
+        TabelaSimbolosModel tokenExistente = tabelaSimbolos.obterTokenExistente(token);
+        String posicaoLinha = numLinha + ":" + (posicao - token.length() + 1);
+        if (tokenExistente == null) {
+            String codAtomo = obterCodigoAtomo(token);
+            String tipoAtomo = obterTipoAtomo(token, codAtomo);
+            Integer tamanhoTotalToken = token.length();
+            Integer tamanhoToken = null;
+            if (tamanhoTotalToken > 30) {
+                token = trucarToken(token);
+                tamanhoToken = token.length();
+            }
+            tabelaSimbolos.adicionarToken(token, codAtomo, tamanhoTotalToken, tamanhoToken, tipoAtomo, posicaoLinha);
+        } else {
+            tabelaSimbolos.atualizaToken(posicaoLinha, tokenExistente);
+        }
+
     }
 
 }

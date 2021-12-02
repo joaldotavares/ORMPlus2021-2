@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Main {
     private static AnalisadorLexico al = new AnalisadorLexico();
     private static TabelaSimbolos tabela = new TabelaSimbolos();
-    private static Map<String, String> tabelaSimbolos = tabela.obterTabela();
+    private static Map<String, String> tabelaSimbolos = tabela.obterTabelaReservada();
     private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\";
 
     private static char[] content;
@@ -23,6 +23,7 @@ public class Main {
         Scanner scanner = new Scanner(new File(PATH + arquivo));
         System.out.println(tabelaSimbolos);
         int numLinha = 0;
+        boolean filtrarComentarioBloco = false;
         while (scanner.hasNextLine()) {
             int posicao = 0;
             numLinha++;
@@ -31,7 +32,6 @@ public class Main {
             char atomo;
             char proxAtomo = 0;
             StringBuffer token = new StringBuffer();
-            boolean filtrarComentarioBloco = false;
 
             System.out.println(line + " Fim da Linha");
 
@@ -85,6 +85,8 @@ public class Main {
                     } else { //Se a linha acabou, vai adicionar o ultimo token/atomo e vai verificar se pertence a tabela de simbolos e adicionar novos tokens
                         token.append(atomo);
                         System.out.println(token);
+                        String tokenStr = token.toString();
+                        al.salvarToken(tokenStr, numLinha, posicao);
                             /*String tokenStr = token.toString();
                             if (tabelaSimbolos.containsValue(tokenStr)) {
                                 System.out.println("Ja está na tabela, então não faz nada");
@@ -102,6 +104,7 @@ public class Main {
                             /*if (tabelaSimbolos.containsValue(tokenStr)) {
                                 System.out.println("Ja está na tabela, então não faz nada");
                             }*/
+                        al.salvarToken(tokenStr, numLinha, posicao);
                         token.delete(0, token.length());
                         System.out.println(token + "-");
                     }
@@ -118,7 +121,7 @@ public class Main {
 
         }
 
-        System.out.println(tabelaSimbolos);
+        System.out.println(tabela.obterTabelaSimbolos());
     }
 
 

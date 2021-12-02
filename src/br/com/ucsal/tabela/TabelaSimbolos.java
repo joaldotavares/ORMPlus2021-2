@@ -1,76 +1,105 @@
 package br.com.ucsal.tabela;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TabelaSimbolos {
-    private static Map<String, String> listaSimbolos = new HashMap<>();
+    private static Map<String, String> listaPalavrasSimbolosReservados = new HashMap<>();
 
-    static{
-        listaSimbolos.put("P01", "programa");
-        listaSimbolos.put("PO2", "declaracoes");
-        listaSimbolos.put("PO3", "fim-declaracoes");
-        listaSimbolos.put("PO4", "funcoes");
-        listaSimbolos.put("PO5", "fim-funcoes");
-        listaSimbolos.put("PO6", "fim-programa");
-        listaSimbolos.put("PO7", "tipo-var");
-        listaSimbolos.put("PO8", "vazio");
-        listaSimbolos.put("PO9", "real");
-        listaSimbolos.put("P1O", "inteiro");
-        listaSimbolos.put("P11", "cadeia");
-        listaSimbolos.put("P12", "logico");
-        listaSimbolos.put("P13", "caracter");
-        listaSimbolos.put("P14", "tipo-func");
-        listaSimbolos.put("P15", "fim-func");
-        listaSimbolos.put("P16", "tipo-param");
-        listaSimbolos.put("P17", "se");
-        listaSimbolos.put("P18", "fim-se");
-        listaSimbolos.put("P19", "senao");
-        listaSimbolos.put("P20", "enquanto");
-        listaSimbolos.put("P21", "fim-enquanto");
-        listaSimbolos.put("P22", "retorna");
-        listaSimbolos.put("P23", "pausa");
-        listaSimbolos.put("P24", "imprime");
-        listaSimbolos.put("P25", "true");
-        listaSimbolos.put("P26", "false");
-        listaSimbolos.put("S01", ";");
-        listaSimbolos.put("S02", "[");
-        listaSimbolos.put("S03", "]");
-        listaSimbolos.put("S04", ":");
-        listaSimbolos.put("S05", ",");
-        listaSimbolos.put("S06", "(");
-        listaSimbolos.put("S07", ")");
-        listaSimbolos.put("S08", "?");
-        listaSimbolos.put("S09", "{");
-        listaSimbolos.put("S10", "}");
-        listaSimbolos.put("S11", "<=");
-        listaSimbolos.put("S12", "<");
-        listaSimbolos.put("S13", ">");
-        listaSimbolos.put("S14", ">=");
-        listaSimbolos.put("S15", "==");
-        listaSimbolos.put("S16", "!=");
-        listaSimbolos.put("S17", "#");
-        listaSimbolos.put("S18", "+");
-        listaSimbolos.put("S19", "-");
-        listaSimbolos.put("S20", "*");
-        listaSimbolos.put("S21", "/");
-        listaSimbolos.put("S22", "%");
-        listaSimbolos.put("S23", ":=");
-        listaSimbolos.put("I01", "nom-programa");
-        listaSimbolos.put("I02", "variavel");
-        listaSimbolos.put("I03", "nom-funcao");
-        listaSimbolos.put("I04", "cons-inteiro");
-        listaSimbolos.put("I05", "cons-real");
-        listaSimbolos.put("I06", "cons-cadeia");
-        listaSimbolos.put("I07", "cons-caracter");
+    private static List<TabelaSimbolosModel> listaTabelaSimbolos = new LinkedList<>();
+
+
+    static {
+        listaPalavrasSimbolosReservados.put("P01", "programa");
+        listaPalavrasSimbolosReservados.put("PO2", "declaracoes");
+        listaPalavrasSimbolosReservados.put("PO3", "fim-declaracoes");
+        listaPalavrasSimbolosReservados.put("PO4", "funcoes");
+        listaPalavrasSimbolosReservados.put("PO5", "fim-funcoes");
+        listaPalavrasSimbolosReservados.put("PO6", "fim-programa");
+        listaPalavrasSimbolosReservados.put("PO7", "tipo-var");
+        listaPalavrasSimbolosReservados.put("PO8", "vazio");
+        listaPalavrasSimbolosReservados.put("PO9", "real");
+        listaPalavrasSimbolosReservados.put("P1O", "inteiro");
+        listaPalavrasSimbolosReservados.put("P11", "cadeia");
+        listaPalavrasSimbolosReservados.put("P12", "logico");
+        listaPalavrasSimbolosReservados.put("P13", "caracter");
+        listaPalavrasSimbolosReservados.put("P14", "tipo-func");
+        listaPalavrasSimbolosReservados.put("P15", "fim-func");
+        listaPalavrasSimbolosReservados.put("P16", "tipo-param");
+        listaPalavrasSimbolosReservados.put("P17", "se");
+        listaPalavrasSimbolosReservados.put("P18", "fim-se");
+        listaPalavrasSimbolosReservados.put("P19", "senao");
+        listaPalavrasSimbolosReservados.put("P20", "enquanto");
+        listaPalavrasSimbolosReservados.put("P21", "fim-enquanto");
+        listaPalavrasSimbolosReservados.put("P22", "retorna");
+        listaPalavrasSimbolosReservados.put("P23", "pausa");
+        listaPalavrasSimbolosReservados.put("P24", "imprime");
+        listaPalavrasSimbolosReservados.put("P25", "true");
+        listaPalavrasSimbolosReservados.put("P26", "false");
+        listaPalavrasSimbolosReservados.put("S01", ";");
+        listaPalavrasSimbolosReservados.put("S02", "[");
+        listaPalavrasSimbolosReservados.put("S03", "]");
+        listaPalavrasSimbolosReservados.put("S04", ":");
+        listaPalavrasSimbolosReservados.put("S05", ",");
+        listaPalavrasSimbolosReservados.put("S06", "(");
+        listaPalavrasSimbolosReservados.put("S07", ")");
+        listaPalavrasSimbolosReservados.put("S08", "?");
+        listaPalavrasSimbolosReservados.put("S09", "{");
+        listaPalavrasSimbolosReservados.put("S10", "}");
+        listaPalavrasSimbolosReservados.put("S11", "<=");
+        listaPalavrasSimbolosReservados.put("S12", "<");
+        listaPalavrasSimbolosReservados.put("S13", ">");
+        listaPalavrasSimbolosReservados.put("S14", ">=");
+        listaPalavrasSimbolosReservados.put("S15", "==");
+        listaPalavrasSimbolosReservados.put("S16", "!=");
+        listaPalavrasSimbolosReservados.put("S17", "#");
+        listaPalavrasSimbolosReservados.put("S18", "+");
+        listaPalavrasSimbolosReservados.put("S19", "-");
+        listaPalavrasSimbolosReservados.put("S20", "*");
+        listaPalavrasSimbolosReservados.put("S21", "/");
+        listaPalavrasSimbolosReservados.put("S22", "%");
+        listaPalavrasSimbolosReservados.put("S23", ":=");
+        listaPalavrasSimbolosReservados.put("I01", "nom-programa");
+        listaPalavrasSimbolosReservados.put("I02", "variavel");
+        listaPalavrasSimbolosReservados.put("I03", "nom-funcao");
+        listaPalavrasSimbolosReservados.put("I04", "cons-inteiro");
+        listaPalavrasSimbolosReservados.put("I05", "cons-real");
+        listaPalavrasSimbolosReservados.put("I06", "cons-cadeia");
+        listaPalavrasSimbolosReservados.put("I07", "cons-caracter");
     }
 
-    public Map<String, String> obterTabela(){
-        return listaSimbolos;
+    public Map<String, String> obterTabelaReservada() {
+        return listaPalavrasSimbolosReservados;
     }
 
-    public void adicionarToken(String chave, String token){
-        listaSimbolos.put(chave, token);
+    public void adicionarToken(String token, String codAtomo, Integer qtdCaracterAntesTruncagem, Integer qtdCaracterDepoisTruncagem, String tipo, String linhasOcorrencia) {
+        int indice = listaTabelaSimbolos.size();
+        TabelaSimbolosModel elemento = new TabelaSimbolosModel(indice, codAtomo, token, qtdCaracterAntesTruncagem, qtdCaracterDepoisTruncagem, tipo, linhasOcorrencia);
+        listaTabelaSimbolos.add(elemento);
     }
-    
+
+    public void atualizaToken(String posicao, TabelaSimbolosModel simbolosModel) {
+        String linhasOcorrencia = simbolosModel.getLinhasOcorrencia();
+        String[] split = linhasOcorrencia.split(",");
+        if (split.length < 5) {
+            linhasOcorrencia += ", " + posicao;
+        }
+        simbolosModel.setLinhasOcorrencia(linhasOcorrencia);
+    }
+
+    /*
+    Pesquisa se já existe o token na tabela de simbolos e retorna o elemento identificado
+     */
+    public TabelaSimbolosModel obterTokenExistente(String token) {
+        Optional<TabelaSimbolosModel> result = listaTabelaSimbolos.stream().parallel()
+                .filter(t -> t.lexame.equals(token)).findFirst();
+        return result.isPresent() ? result.get() : null;
+    }
+
+    public List<TabelaSimbolosModel> obterTabelaSimbolos() {
+        return listaTabelaSimbolos;
+    }
+
+    public TabelaSimbolosModel obterUltimoElementoAdicionado() {
+        return listaTabelaSimbolos.get(listaTabelaSimbolos.size() - 1);
+    }
 }
