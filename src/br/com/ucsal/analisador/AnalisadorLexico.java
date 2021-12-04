@@ -38,6 +38,10 @@ public class AnalisadorLexico {
         return atomo == '{' || atomo == '}' || atomo == '[' || atomo == ']' || atomo == '(' || atomo == ')';
     }
 
+    public boolean verificarAspas(char atomo) {
+        return atomo == '"';
+    }
+
     public boolean verificarListaParam(char atomo) {
         return atomo == ',' || atomo == ';' || atomo == '?' || atomo == '.';
     }
@@ -72,13 +76,6 @@ public class AnalisadorLexico {
 
     public boolean verificarCaracterValidoAposOperador(char atomo, char proxAtomo) {
         return verificarOperador(atomo) && verificarCaracter(proxAtomo) || verificarDigito(proxAtomo);
-    }
-
-    public boolean verificarMetodoValido(char atomo, char atomosPos) {
-        if (verificarDigito(atomo) || verificarCaracter(atomo) && verificarBloco(atomosPos)) {
-            return true;
-        }
-        return false;
     }
 
     // TODO Verificar se atende as regras

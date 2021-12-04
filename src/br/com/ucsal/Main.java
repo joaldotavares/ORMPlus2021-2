@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.Scanner;
 
-/* FIXME: Os prints estão ai somente para verificação as saidas do que e gerado pelo programa */
+//FIXME: Os prints estão ai somente para verificar as saidas do que e gerado pelo programa, na entrega final devem ser removidos
 
 public class Main {
     private static AnalisadorLexico al = new AnalisadorLexico();
@@ -23,20 +23,18 @@ public class Main {
         Scanner scanner = new Scanner(new File(PATH + arquivo));
         System.out.println(tabelaSimbolos);
         int numLinha = 0;
-        boolean filtrarComentarioBloco = false;
+        boolean filtrarComentarioBloco = false, filtrarAspas = false;
         while (scanner.hasNextLine()) {
             int posicao = 0;
             numLinha++;
-            String line = scanner.nextLine();
+            String line = scanner.nextLine(), tokenStr;
             content = line.toCharArray();
             char atomo;
             char proxAtomo = 0;
             StringBuffer token = new StringBuffer();
-
-            System.out.println(line + " Fim da Linha");
+            StringBuffer tokenAspas = new StringBuffer();
 
             while (posicao < content.length) {
-                System.out.println(posicao + " pos");
                 atomo = content[posicao];
                 try {
                     proxAtomo = content[posicao + 1];
@@ -63,16 +61,36 @@ public class Main {
                     }
                 }
 
+                if (filtrarAspas) {
+                    if (al.verificarAspas(atomo)) {
+                        filtrarAspas = false;
+                    }
+                    tokenAspas.append(atomo);
+                    posicao++;
+                    continue;
+                } else {
+                    if (al.verificarAspas(atomo)) {
+                        tokenAspas.append(atomo);
+                        filtrarAspas = true;
+                    }
+                }
+
                 if (al.verificarPalavrasReservadasSeguidoDeFuncao(atomo, token)) {
                     System.out.println(token);
+                    tokenStr = token.toString();
+                    al.salvarToken(tokenStr, numLinha, posicao);
                     token.delete(0, token.length());
                 } else if (al.verificarCaracterValidoSeguidoPorOperacao(atomo, proxAtomo)) {
                     token.append(atomo);
                     System.out.println(token);
+                    tokenStr = token.toString();
+                    al.salvarToken(tokenStr, numLinha, posicao);
                     token.delete(0, token.length());
                 } else if (al.verificarCaracterValidoAposOperador(atomo, proxAtomo)) {
                     token.append(atomo);
                     System.out.println(token);
+                    tokenStr = token.toString();
+                    al.salvarToken(tokenStr, numLinha, posicao);
                     token.delete(0, token.length());
                 } else if (al.verificarListaParam(atomo) || al.verificarBloco(atomo) || al.verificarDigito(atomo) || al.verificarCaracter(atomo) || al.verificarOperador(atomo) ||
                         al.verificarOperadorSoma(atomo) || al.verificarOperadorMult(atomo) || al.verificarVariavel(atomo)
@@ -85,34 +103,24 @@ public class Main {
                     } else { //Se a linha acabou, vai adicionar o ultimo token/atomo e vai verificar se pertence a tabela de simbolos e adicionar novos tokens
                         token.append(atomo);
                         System.out.println(token);
-                        String tokenStr = token.toString();
+                        tokenStr = token.toString();
                         al.salvarToken(tokenStr, numLinha, posicao);
-                            /*String tokenStr = token.toString();
-                            if (tabelaSimbolos.containsValue(tokenStr)) {
-                                System.out.println("Ja está na tabela, então não faz nada");
-                            } else {
-                                tabela.adicionarToken("T" + key, tokenStr);
-                                System.out.println("Como o atomo/token não está na tabela ele vai adicionado a tabela");
-                            }*/
                     }
                 } else { //Se encontar um delimitador "um espaço"
 
                     if (token.length() > 0) { //Um ou mais espaços estão formando um token de tamanho 0, por conta da validação anterior do else
                         System.out.println(token);
-                        String tokenStr = token.toString();
-                        //vai verificar se pertence a tabela de simbolos e adicionar novos tokens
-                            /*if (tabelaSimbolos.containsValue(tokenStr)) {
-                                System.out.println("Ja está na tabela, então não faz nada");
-                            }*/
+                        tokenStr = token.toString();
                         al.salvarToken(tokenStr, numLinha, posicao);
                         token.delete(0, token.length());
-                        System.out.println(token + "-");
                     }
 
-                    //if (token.length() == 0 && !al.verificarEspaco(atomo)) {
-                    //throw new Exception("Atomo '" + atomo + "' da linha " + linha + " não pertence a linguagem" +
-                    //"\nArquivo: " + arquivo);
-                    //}
+                    if (tokenAspas.length() > 1) {
+                        System.out.println(tokenAspas);
+                        tokenStr = tokenAspas.toString();
+                        al.salvarToken(tokenStr, numLinha, posicao);
+                        tokenAspas.delete(0, tokenAspas.length());
+                    }
                 }
                 posicao++;
             }

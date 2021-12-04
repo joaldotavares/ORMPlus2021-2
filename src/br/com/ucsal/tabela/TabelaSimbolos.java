@@ -7,7 +7,6 @@ public class TabelaSimbolos {
 
     private static List<TabelaSimbolosModel> listaTabelaSimbolos = new LinkedList<>();
 
-
     static {
         listaPalavrasSimbolosReservados.put("P01", "programa");
         listaPalavrasSimbolosReservados.put("PO2", "declaracoes");
