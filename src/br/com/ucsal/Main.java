@@ -2,8 +2,13 @@ package br.com.ucsal;
 
 import br.com.ucsal.analisador.AnalisadorLexico;
 import br.com.ucsal.tabela.TabelaSimbolos;
+import br.com.ucsal.tabela.TabelaSimbolosModel;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -128,7 +133,18 @@ public class Main {
 
 
         }
+        String arquivoTabela = "MeuTeste.TAB";
+        File arq = new File(PATH + arquivoTabela);
+        arq.createNewFile();
+        FileWriter fw = new FileWriter( arq );
+        BufferedWriter bw = new BufferedWriter( fw );
 
+        for (TabelaSimbolosModel tab: tabela.obterTabelaSimbolos() ) {
+            bw.write(String.valueOf(tab));
+            bw.newLine();
+        }
+        bw.close();
+        fw.close();
         System.out.println(tabela.obterTabelaSimbolos());
     }
 

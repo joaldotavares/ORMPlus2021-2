@@ -1,0 +1,28 @@
+{numEntrada=0, codAtomo='P17', lexame='se', QtdCaracterAntesTruncagem=2, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:1, 2:4'}
+
+{numEntrada=1, codAtomo='PO2', lexame='value', QtdCaracterAntesTruncagem=5, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:4'}
+
+{numEntrada=2, codAtomo='PO2', lexame='> ', QtdCaracterAntesTruncagem=2, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:9'}
+
+{numEntrada=3, codAtomo='PO2', lexame='3', QtdCaracterAntesTruncagem=1, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:11'}
+
+{numEntrada=4, codAtomo='PO2', lexame='', QtdCaracterAntesTruncagem=0, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:13'}
+
+{numEntrada=5, codAtomo='P18', lexame='fim-se', QtdCaracterAntesTruncagem=6, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:15'}
+
+{numEntrada=6, codAtomo='PO2', lexame='tod', QtdCaracterAntesTruncagem=3, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:22'}
+
+{numEntrada=7, codAtomo='PO2', lexame='dia', QtdCaracterAntesTruncagem=3, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:26'}
+
+{numEntrada=8, codAtomo='PO2', lexame='isso', QtdCaracterAntesTruncagem=4, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:30'}
+
+{numEntrada=9, codAtomo='PO2', lexame='var', QtdCaracterAntesTruncagem=3, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:35'}
+
+{numEntrada=10, codAtomo='PO2', lexame='"tempo de alguma coisa"', QtdCaracterAntesTruncagem=23, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:39'}
+
+{numEntrada=11, codAtomo='PO2', lexame='temp', QtdCaracterAntesTruncagem=4, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='1:63, 1:68, 1:73, 2:7'}
+
+{numEntrada=12, codAtomo='PO2', lexame='"temp"', QtdCaracterAntesTruncagem=6, QtdCaracterDepoisTruncagem=null, tipo='', linhasOcorrencia='2:12'}
+
+{numEntrada=13, codAtomo='PO2', lexame='caracteremuitograndeparasersal', QtdCaracterAntesTruncagem=56, QtdCaracterDepoisTruncagem=30, tipo='', linhasOcorrencia='2:18'}
+
