@@ -127,6 +127,7 @@ public class Main {
             posicao = 0;
         }
         al.gerarArquivoTAB();
+        al.gerarArquivoLex();
     }
 
 

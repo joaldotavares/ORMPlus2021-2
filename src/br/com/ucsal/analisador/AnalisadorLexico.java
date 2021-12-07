@@ -174,4 +174,35 @@ public class AnalisadorLexico {
         fw.close();
         System.out.println(tabelaSimbolos.obterTabelaSimbolos());
     }
+
+    public static void gerarArquivoLex() throws IOException {
+        String arquivoTabela = "MeuTeste.lex";
+        File arq = new File(PATH + arquivoTabela);
+        arq.createNewFile();
+        FileWriter fw = new FileWriter( arq );
+        BufferedWriter bw = new BufferedWriter( fw );
+        bw.write("E05");
+        bw.newLine();
+        bw.write("==================================");
+        bw.newLine();
+        bw.write("COMPONENTES:");
+        bw.newLine();
+        bw.write("Joaldo Tavares Da Silva Junior\tjoaldo.junior@ucsal.edu.br\t(71) 99658-3398");
+        bw.newLine();
+        bw.write("Renato Russo Gomes De Oliveira\trenato.oliveira@ucsal.edu.br\t(71) 99941-6735");
+        bw.newLine();
+        bw.write("Yla Maria Buri S. Dos Santos\tyla.santos@ucsal.edu.br\t(71) 98323-4221");
+        bw.newLine();
+        bw.write("Ezequias Sampaio Ferreira\tezequias.ferreira@ucsal.edu.br\t(71) 99381-9241");
+        bw.newLine();
+        bw.write("==================================");
+        bw.newLine();
+        for (TabelaSimbolosModel tab: tabelaSimbolos.obterTabelaSimbolos() ) {
+            bw.write(String.valueOf(tab));
+            bw.newLine();
+        }
+        bw.close();
+        fw.close();
+        System.out.println(tabelaSimbolos.obterTabelaSimbolos());
+    }
 }
