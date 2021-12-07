@@ -3,10 +3,15 @@ package br.com.ucsal.analisador;
 import br.com.ucsal.tabela.TabelaSimbolos;
 import br.com.ucsal.tabela.TabelaSimbolosModel;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 
 public class AnalisadorLexico {
 
+    private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\";
     private static TabelaSimbolos tabelaSimbolos = new TabelaSimbolos();
     private static Map<String, String> tabelaReservada = tabelaSimbolos.obterTabelaReservada();
 
@@ -15,11 +20,11 @@ public class AnalisadorLexico {
     }
 
     public boolean verificarCaracter(char atomo) {
-        return (atomo >= 'a' && atomo <= 'z') || (atomo >= 'A' && atomo <= 'Z');
+        return (atomo >= 'a' && atomo <= 'z') || (atomo >= 'A' && atomo <= 'Z' || atomo == '.');
     }
 
     public boolean verificarOperador(char atomo) {
-        return atomo == '<' || atomo == '>' || atomo == '=' || atomo == '!' || atomo == '#' || atomo == ':';
+        return atomo == '<' || atomo == '>' || atomo == '=' || atomo == '!' || atomo == '#' || atomo == ':' ;
     }
 
     public boolean verificarEspaco(char atomo) {
@@ -43,7 +48,7 @@ public class AnalisadorLexico {
     }
 
     public boolean verificarListaParam(char atomo) {
-        return atomo == ',' || atomo == ';' || atomo == '?' || atomo == '.';
+        return atomo == ',' || atomo == ';' || atomo == '?';
     }
 
     public boolean verificarVariavel(char atomo) {
@@ -71,10 +76,16 @@ public class AnalisadorLexico {
     }
 
     public boolean verificarCaracterValidoSeguidoPorOperacao(char atomo, char proxAtomo) {
+        if(!verificarOperador(proxAtomo)){
+            return false;
+        }
         return verificarDigito(atomo) || verificarCaracter(atomo) && verificarOperador(proxAtomo);
     }
 
     public boolean verificarCaracterValidoAposOperador(char atomo, char proxAtomo) {
+        if(!verificarOperador(atomo)){
+            return false;
+        }
         return verificarOperador(atomo) && verificarCaracter(proxAtomo) || verificarDigito(proxAtomo);
     }
 
@@ -90,11 +101,16 @@ public class AnalisadorLexico {
 
     // TODO Verificar as regras para tipo
     public String obterTipoAtomo(String token, String codAtomo) {
-       /* if (codAtomo.equals("PO2")) {
-            TabelaSimbolosModel ultimoElemento = tabelaSimbolos.obterUltimoElementoAdicionado();
-            return tabelaReservada.get(ultimoElemento.codAtomo);
-        }*/
-        return "";
+      if(verificarInteiro(token)){
+          return "inteiro";
+      }else if(verificarReal(token)){
+          return "ponto flutuante";
+      }else if(verificarBoolean(token)){
+          return "booleano";
+      }else if(verificarString(token)){
+          return "string";
+      }
+      return "";
     }
 
     public String trucarToken(String token) {
@@ -120,4 +136,42 @@ public class AnalisadorLexico {
 
     }
 
+    public static boolean verificarInteiro(String atomo){
+        return atomo.chars().allMatch( Character::isDigit );
+    }
+
+    private static boolean verificarString(String atomo){
+        return atomo.chars().allMatch( Character::isLetterOrDigit ) || atomo.startsWith("\"") && atomo.endsWith("\"");
+    }
+
+    private static boolean verificarBoolean(String atomo){
+        atomo.trim();
+        return atomo.equals("true") || atomo.equals("false");
+    }
+
+    private static boolean verificarReal(String atomo){
+        float numero = 0.0F;
+        try {
+            numero = Float.parseFloat(atomo);
+        }catch (Exception e){
+
+        }
+        return numero != Math.floor(numero);
+    }
+
+    public static void gerarArquivoTAB() throws IOException {
+        String arquivoTabela = "MeuTeste.TAB";
+        File arq = new File(PATH + arquivoTabela);
+        arq.createNewFile();
+        FileWriter fw = new FileWriter( arq );
+        BufferedWriter bw = new BufferedWriter( fw );
+
+        for (TabelaSimbolosModel tab: tabelaSimbolos.obterTabelaSimbolos() ) {
+            bw.write(String.valueOf(tab));
+            bw.newLine();
+        }
+        bw.close();
+        fw.close();
+        System.out.println(tabelaSimbolos.obterTabelaSimbolos());
+    }
 }
