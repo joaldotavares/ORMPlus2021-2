@@ -136,6 +136,10 @@ public class AnalisadorLexico {
 
     }
 
+    public void limparLista(){
+        tabelaSimbolos.clean();
+    }
+
     public static boolean verificarInteiro(String atomo){
         return atomo.chars().allMatch( Character::isDigit );
     }
@@ -160,7 +164,7 @@ public class AnalisadorLexico {
     }
 
     public static void gerarArquivoTAB() throws IOException {
-        String arquivoTabela = "MeuTeste.TAB";
+        String arquivoTabela = "resultado\\MeuTeste.TAB";
         File arq = new File(PATH + arquivoTabela);
         arq.createNewFile();
         FileWriter fw = new FileWriter( arq );
@@ -176,7 +180,7 @@ public class AnalisadorLexico {
     }
 
     public static void gerarArquivoLex() throws IOException {
-        String arquivoTabela = "MeuTeste.lex";
+        String arquivoTabela = "resultado\\MeuTeste.lex";
         File arq = new File(PATH + arquivoTabela);
         arq.createNewFile();
         FileWriter fw = new FileWriter( arq );

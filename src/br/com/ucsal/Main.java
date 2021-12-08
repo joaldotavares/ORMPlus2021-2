@@ -4,6 +4,7 @@ import br.com.ucsal.analisador.AnalisadorLexico;
 import br.com.ucsal.tabela.TabelaSimbolos;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -11,15 +12,18 @@ import java.util.Scanner;
 
 public class Main {
     private static AnalisadorLexico al = new AnalisadorLexico();
+
     private static TabelaSimbolos tabela = new TabelaSimbolos();
     private static Map<String, String> tabelaSimbolos = tabela.obterTabelaReservada();
     private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\";
 
     private static char[] content;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        new IniciarInterface();
+    }
 
-        String arquivo = "MeuTeste.202";
+    public void IniciarPrograma(String arquivo) throws IOException {
         Scanner scanner = new Scanner(new File(PATH + arquivo));
         System.out.println(tabelaSimbolos);
         int numLinha = 0;
@@ -124,11 +128,10 @@ public class Main {
                 }
                 posicao++;
             }
-            posicao = 0;
         }
         al.gerarArquivoTAB();
         al.gerarArquivoLex();
+        al.limparLista();
     }
-
 
 }

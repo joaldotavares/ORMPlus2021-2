@@ -1,10 +1,12 @@
-E05==================================
+E05
+==================================
 COMPONENTES:
 Joaldo Tavares Da Silva Junior	joaldo.junior@ucsal.edu.br	(71) 99658-3398
 Renato Russo Gomes De Oliveira	renato.oliveira@ucsal.edu.br	(71) 99941-6735
 Yla Maria Buri S. Dos Santos	yla.santos@ucsal.edu.br	(71) 98323-4221
 Ezequias Sampaio Ferreira	ezequias.ferreira@ucsal.edu.br	(71) 99381-9241
-=================================={numEntrada=0, codAtomo='P17', lexame='se', QtdCaracterAntesTruncagem=2, QtdCaracterDepoisTruncagem=null, tipo='string', linhasOcorrencia='1:1, 2:4'}
+==================================
+{numEntrada=0, codAtomo='P17', lexame='se', QtdCaracterAntesTruncagem=2, QtdCaracterDepoisTruncagem=null, tipo='string', linhasOcorrencia='1:1, 2:4'}
 
 {numEntrada=1, codAtomo='PO2', lexame='value', QtdCaracterAntesTruncagem=5, QtdCaracterDepoisTruncagem=null, tipo='string', linhasOcorrencia='1:4'}
 

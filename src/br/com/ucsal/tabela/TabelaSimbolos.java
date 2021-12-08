@@ -101,4 +101,8 @@ public class TabelaSimbolos {
     public TabelaSimbolosModel obterUltimoElementoAdicionado() {
         return listaTabelaSimbolos.get(listaTabelaSimbolos.size() - 1);
     }
+
+    public void clean(){
+       listaTabelaSimbolos.clear();
+    }
 }
