@@ -1,0 +1,27 @@
+0	P01	programa	8	null	string	1:1
+1	PO2	arquivoTeste	12	null	string	1:9
+2	PO2	declaracoes	11	null	string	3:0
+3	PO2	int	3	null	string	4:5
+4	PO2	a	1	null	string	4:9
+5	PO2	=	1	null		4:10, 5:15, 8:47
+6	PO2	1	1	null	inteiro	4:11
+7	PO2	boolean	7	null	string	5:5, 8:36
+8	PO2	x	1	null	string	5:13
+9	P26	false	5	null	booleano	5:16
+10	PO3	fim-declaracoes	15	null		6:1
+11	P17	se	2	null	string	8:1, 9:4
+12	PO2	value	5	null	string	8:4
+13	S13	>	1	null		8:10
+14	PO2	3	1	null	inteiro	8:12
+15	P18	fim-se	6	null		8:15
+16	PO2	tod	3	null	string	8:22
+17	PO2	dia	3	null	string	8:26
+18	PO2	isso	4	null	string	8:30
+19	PO2	af	2	null	string	8:44
+20	P25	true	4	null	booleano	8:49
+21	PO2	3.5	3	null	ponto flutuante	8:54
+22	PO2	"tempo de alguma coisa"	23	null	string	8:58
+23	PO2	temp	4	null	string	8:82, 8:87, 8:92, 9:13
+24	PO2	65.06	5	null	ponto flutuante	9:7
+25	PO2	"temp"	6	null	string	9:18
+26	PO2	caracteremuitograndeparasersal	56	30	string	9:24

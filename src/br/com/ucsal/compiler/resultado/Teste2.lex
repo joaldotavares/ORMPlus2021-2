@@ -27,3 +27,14 @@ temp	 | PO2	 | 14
 65.06	 | PO2	 | 15
 "temp"	 | PO2	 | 16
 caracteremuitograndeparasersal	 | PO2	 | 17
+caracteremuitograndeparasersal	 | PO2	 | 18
+caracteremuitograndeparasersal	 | PO2	 | 19
+caracteremuitograndeparasersal	 | PO2	 | 20
+int	 | PO2	 | 21
+a	 | PO2	 | 22
+433	 | PO2	 | 23
+enquanto	 | P20	 | 24
+	 | PO2	 | 25
+500	 | PO2	 | 26
+a+10	 | PO2	 | 27
+fim	 | PO2	 | 28

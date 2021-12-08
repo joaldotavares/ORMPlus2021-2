@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class AnalisadorLexico {
 
-    private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\";
+    private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\resultado\\";
     private static TabelaSimbolos tabelaSimbolos = new TabelaSimbolos();
     private static Map<String, String> tabelaReservada = tabelaSimbolos.obterTabelaReservada();
 
@@ -163,15 +163,20 @@ public class AnalisadorLexico {
         return numero != Math.floor(numero);
     }
 
-    public static void gerarArquivoTAB() throws IOException {
-        String arquivoTabela = "resultado\\MeuTeste.TAB";
-        File arq = new File(PATH + arquivoTabela);
+    public static void gerarArquivoTAB(String nomeArquivo) throws IOException {
+        File arq = new File(PATH + nomeArquivo+".TAB");
         arq.createNewFile();
         FileWriter fw = new FileWriter( arq );
         BufferedWriter bw = new BufferedWriter( fw );
-
+    /*número da entrada da tabela de símbolos, código do átomo,
+lexeme, quantidade de caracteres antes da truncagem, quantidade de
+caracteres depois da truncagem, tipo do símbolo e as cinco primeiras
+linhas onde o símbolo aparece.
+    * */
         for (TabelaSimbolosModel tab: tabelaSimbolos.obterTabelaSimbolos() ) {
-            bw.write(String.valueOf(tab));
+            bw.write(tab.numEntrada+"\t"+tab.getCodAtomo()+"\t"+tab.getLexame()+"\t"+
+                    tab.getQtdCaracterAntesTruncagem()+"\t"+tab.QtdCaracterDepoisTruncagem+"\t"+
+                    tab.getTipo()+"\t"+tab.linhasOcorrencia);
             bw.newLine();
         }
         bw.close();
@@ -179,9 +184,8 @@ public class AnalisadorLexico {
         System.out.println(tabelaSimbolos.obterTabelaSimbolos());
     }
 
-    public static void gerarArquivoLex() throws IOException {
-        String arquivoTabela = "resultado\\MeuTeste.lex";
-        File arq = new File(PATH + arquivoTabela);
+    public static void gerarArquivoLex(String nomeArquivo) throws IOException {
+        File arq = new File(PATH + nomeArquivo+".lex");
         arq.createNewFile();
         FileWriter fw = new FileWriter( arq );
         BufferedWriter bw = new BufferedWriter( fw );
@@ -191,18 +195,27 @@ public class AnalisadorLexico {
         bw.newLine();
         bw.write("COMPONENTES:");
         bw.newLine();
-        bw.write("Joaldo Tavares Da Silva Junior\tjoaldo.junior@ucsal.edu.br\t(71) 99658-3398");
+        bw.write("Joaldo Tavares Da Silva Junior\t|\tjoaldo.junior@ucsal.edu.br\t|\t(71) 99658-3398");
         bw.newLine();
-        bw.write("Renato Russo Gomes De Oliveira\trenato.oliveira@ucsal.edu.br\t(71) 99941-6735");
+        bw.write("Renato Russo Gomes De Oliveira\t|\trenato.oliveira@ucsal.edu.br\t|\t(71) 99941-6735");
         bw.newLine();
-        bw.write("Yla Maria Buri S. Dos Santos\tyla.santos@ucsal.edu.br\t(71) 98323-4221");
+        bw.write("Yla Maria Buri S. Dos Santos\t|\tyla.santos@ucsal.edu.br\t|\t(71) 98323-4221");
         bw.newLine();
-        bw.write("Ezequias Sampaio Ferreira\tezequias.ferreira@ucsal.edu.br\t(71) 99381-9241");
+        bw.write("Ezequias Sampaio Ferreira\t|\tezequias.ferreira@ucsal.edu.br\t|\t(71) 99381-9241");
         bw.newLine();
         bw.write("==================================");
         bw.newLine();
+        bw.write("ANALISE LEXICA:");
+        bw.newLine();
+        bw.write("==================================");
+        bw.newLine();
+        bw.write("Lexeme\t | Código do átomo\t | Indice");
+        bw.newLine();
         for (TabelaSimbolosModel tab: tabelaSimbolos.obterTabelaSimbolos() ) {
-            bw.write(String.valueOf(tab));
+            bw.write(String.valueOf(tab.getLexame()+ "\t | "+tab.getCodAtomo()));
+            if(tabelaSimbolos.obterTabelaSimbolos().contains(tab)){
+                bw.write("\t | "+ tab.getNumEntrada());
+            }
             bw.newLine();
         }
         bw.close();
