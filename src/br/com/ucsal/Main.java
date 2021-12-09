@@ -24,7 +24,7 @@ public class Main {
     }
 
     public void IniciarPrograma(String arquivo) throws IOException {
-        Scanner scanner = new Scanner(new File(PATH + arquivo+".202"));
+        Scanner scanner = new Scanner(new File(arquivo+".202"));
         //System.out.println(tabelaSimbolos);
         int numLinha = 0;
         boolean filtrarComentarioBloco = false, filtrarAspas = false;

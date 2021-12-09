@@ -164,7 +164,7 @@ public class AnalisadorLexico {
     }
 
     public static void gerarArquivoTAB(String nomeArquivo) throws IOException {
-        File arq = new File(PATH + nomeArquivo+".TAB");
+        File arq = new File(nomeArquivo+".TAB");
         arq.createNewFile();
         FileWriter fw = new FileWriter( arq );
         BufferedWriter bw = new BufferedWriter( fw );
@@ -205,7 +205,7 @@ linhas onde o símbolo aparece.
     }
 
     public static void gerarArquivoLex(String nomeArquivo) throws IOException {
-        File arq = new File(PATH + nomeArquivo+".lex");
+        File arq = new File(nomeArquivo+".lex");
         arq.createNewFile();
         FileWriter fw = new FileWriter( arq );
         BufferedWriter bw = new BufferedWriter( fw );
