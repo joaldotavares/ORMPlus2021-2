@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class AnalisadorLexico {
 
-    private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\compiler\\resultado\\";
+    private static final String PATH = "..\\ORMPlus2021-2\\src\\br\\com\\ucsal\\";
     private static TabelaSimbolos tabelaSimbolos = new TabelaSimbolos();
     private static Map<String, String> tabelaReservada = tabelaSimbolos.obterTabelaReservada();
 
@@ -168,6 +168,26 @@ public class AnalisadorLexico {
         arq.createNewFile();
         FileWriter fw = new FileWriter( arq );
         BufferedWriter bw = new BufferedWriter( fw );
+        bw.write("E05");
+        bw.newLine();
+        bw.write("==================================");
+        bw.newLine();
+        bw.write("COMPONENTES:");
+        bw.newLine();
+        bw.write("Joaldo Tavares Da Silva Junior\t|\tjoaldo.junior@ucsal.edu.br\t|\t(71) 99658-3398");
+        bw.newLine();
+        bw.write("Renato Russo Gomes De Oliveira\t|\trenato.oliveira@ucsal.edu.br\t|\t(71) 99941-6735");
+        bw.newLine();
+        bw.write("Yla Maria Buri S. Dos Santos\t|\tyla.santos@ucsal.edu.br\t|\t(71) 98323-4221");
+        bw.newLine();
+        bw.write("Ezequias Sampaio Ferreira\t|\tezequias.ferreira@ucsal.edu.br\t|\t(71) 99381-9241");
+        bw.newLine();
+        bw.write("==================================");
+        bw.newLine();
+        bw.write("TABELA DE SIMBOLOS:");
+        bw.newLine();
+        bw.write("==================================");
+        bw.newLine();
     /*número da entrada da tabela de símbolos, código do átomo,
 lexeme, quantidade de caracteres antes da truncagem, quantidade de
 caracteres depois da truncagem, tipo do símbolo e as cinco primeiras
